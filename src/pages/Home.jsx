@@ -7,18 +7,18 @@ export default class Home extends Component {
     value: 0,
   };
 
-  handleValue = (e) => {
+  handleValue = (childVal) => {
     this.setState((prevState) => ({
-      value: prevState.value + e,
+      value: prevState.value + childVal,
     }));
   };
 
   render() {
     return (
       <div>
-        <Counter handleValue={(e) => this.handleValue(e)} step={5} />
-        <Counter handleValue={(e) => this.handleValue(e)} step={3} />
-        <Counter handleValue={(e) => this.handleValue(e)} step={2} />
+        <Counter handleValue={(childVal) => this.handleValue(childVal)} step={5} />
+        <Counter handleValue={(childVal) => this.handleValue(childVal)} step={3} />
+        <Counter handleValue={(childVal) => this.handleValue(childVal)} step={2} />
         {/* <Counter step={1} /> */}
         <Total value={this.state.value} />
       </div>
