@@ -5,20 +5,23 @@ export default class Counter extends Component {
     value: 0,
     step: this.props.step,
   };
+  upDateTotal = (value) => {
+    this.props.handleValue(value);
 
+  }
   onIncrement = () => {
     this.setState((prevState) => ({
-      value: prevState.value + +this.state.step,
+      value: prevState.value + this.state.step,
     }));
-    this.props.handleValue(this.state.value);
+    this.upDateTotal(this.state.step)
   };
 
   onDecrement = () => {
     if (this.state.value > 0) {
       this.setState((prevState) => ({
-        value: prevState.value - +this.state.step,
+        value: prevState.value - this.state.step,
       }));
-      this.props.handleValue(-this.state.value);
+      this.upDateTotal(-this.state.step)
     }
   };
 

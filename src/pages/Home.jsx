@@ -20,7 +20,7 @@ export default class Home extends Component {
         <Counter handleValue={(e) => this.handleValue(e)} step={3} />
         <Counter handleValue={(e) => this.handleValue(e)} step={2} />
         {/* <Counter step={1} /> */}
-        <Total value={5} />
+        <Total value={this.state.value} />
       </div>
     );
   }
