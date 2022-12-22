@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Counter from "../components/Counter";
+import Total from "./Total";
 // import Total from "./Total";
 
 export default class Counters extends Component {
@@ -14,20 +15,25 @@ export default class Counters extends Component {
 
   onIncrement = (counter) => {
     const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].count = counters[index].count + counters[index].steps;
+    const counterIndex = counters.indexOf(counter);
+    counters[counterIndex] = { ...counter };
+    counters[counterIndex].count = counters[counterIndex].count + counters[counterIndex].steps;
     this.setState({ counters });
   };
 
   onDecrement = (counter) => {
     const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    if (counters[index].count > 0) {
-      counters[index].count = counters[index].count - counters[index].steps;
+    const counterIndex = counters.indexOf(counter);
+    counters[counterIndex] = { ...counter };
+    if (counters[counterIndex].count > 0) {
+      counters[counterIndex].count = counters[counterIndex].count - counters[counterIndex].steps;
       this.setState({ counters });
     }
+  };
+  calcTotal = () => {
+    return this.state.counters.reduce(function (acc, obj) {
+      return acc + obj.count;
+    }, 0);
   };
 
   render() {
@@ -41,6 +47,7 @@ export default class Counters extends Component {
             onDecrement={this.onDecrement}
           />
         ))}
+        <Total value={this.calcTotal()} />
       </div>
     );
   }
