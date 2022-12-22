@@ -1,38 +1,21 @@
 import React, { Component } from "react";
 
 export default class Counter extends Component {
-  state = {
-    value: 0,
-    step: this.props.step,
-  };
-  upDateTotal = (value) => {
-    this.props.handleValue(value);
-
-  }
-  onIncrement = () => {
-    this.setState((prevState) => ({
-      value: prevState.value + this.state.step,
-    }));
-    this.upDateTotal(this.state.step)
-  };
-
-  onDecrement = () => {
-    if (this.state.value > 0) {
-      this.setState((prevState) => ({
-        value: prevState.value - this.state.step,
-      }));
-      this.upDateTotal(-this.state.step)
-    }
-  };
-
   render() {
     return (
       <div className="counter">
-        <div className="value">{this.state.value}</div>
-        <button onClick={this.onDecrement} className="decrement">
+        <div className="value">{this.props.counter.count}</div>
+
+        <button
+          className="decrement"
+          onClick={() => this.props.onDecrement(this.props.counter)}
+        >
           -
         </button>
-        <button onClick={this.onIncrement} className="increment">
+        <button
+          className="increment"
+          onClick={() => this.props.onIncrement(this.props.counter)}
+        >
           +
         </button>
       </div>
